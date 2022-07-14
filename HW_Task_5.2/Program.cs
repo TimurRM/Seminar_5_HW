@@ -1,5 +1,6 @@
-﻿// Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. Напишите программу, которая покажет количество чётных чисел в массиве.
-// [345, 897, 568, 234] -> 2
+﻿// Задача 36: Задайте одномерный массив, заполненный случайными числами. Найдите сумму элементов, стоящих на нечётных позициях.
+// [3, 7, 23, 12] -> 19
+// [-4, -6, 89, 6] -> 0
 
 
 internal class Program
@@ -9,8 +10,8 @@ internal class Program
 Console.WriteLine();        
         int[] CreateRandomArray(int start, int end)
         {
-            int[] RandomArray = new int[10];
-            for (int i = 0; i < 10; i++)
+            int[] RandomArray = new int[4];
+            for (int i = 0; i < 4; i++)
             {
                 RandomArray[i] = new Random().Next(start, end);
             }
@@ -37,27 +38,28 @@ Console.WriteLine();
         }
 
 
-        int[] myRandomArray = CreateRandomArray(100, 1000);
+        int[] myRandomArray = CreateRandomArray(-9, 9);
 
-        int EvenNumbers(int[] array)
+        int OddPositionNumbers(int[] array)
         {
-            int evenNumbers = 0;
+            int oddPositionNumber = 0;
             for (int i = 0; i < array.Length; i++)
             {
-                if (array[i] % 2 == 0)
+                if (i % 2 != 0)
                 {
-                    evenNumbers++;
+                    oddPositionNumber += myRandomArray[i];
                 }
             }
-            return evenNumbers;
+            return oddPositionNumber;
         }
 
         ShowArray(myRandomArray);
 
-        int evenNum = EvenNumbers(myRandomArray);
-        Console.WriteLine($" -> {evenNum} (quantity of even numbers in array) - 1-st task");
+        int oddSum = OddPositionNumbers(myRandomArray);
+        Console.WriteLine($" -> {oddSum} (sum of elements in odd positions) - 2-nd task");
         Console.WriteLine();
         Console.ReadKey();
         Console.Clear();
+    
     }
 }
